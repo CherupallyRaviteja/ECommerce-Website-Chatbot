@@ -1,0 +1,776 @@
+/**
+ * products.js - ShopMart Real Product Database
+ * 125 products across 5 categories (25 each)
+ * Images: Carefully mapped per-product using verified Unsplash photo IDs
+ */
+const SHOPMART_PRODUCTS = [
+
+  // ─── ELECTRONICS (25) ───────────────────────────────────────────────────
+  {
+    id: 1, name: "Sony Bravia 55\" 4K OLED TV",
+    category: "Electronics", brand: "Sony", price: 149999, stock: 8,
+    img: "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=400&h=300&fit=crop&auto=format",
+    desc: "XR OLED · Dolby Vision · 120Hz"
+  },
+  {
+    id: 2, name: "LG NanoCell 65\" 4K Smart TV",
+    category: "Electronics", brand: "LG", price: 109999, stock: 11,
+    img: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=400&h=300&fit=crop&auto=format",
+    desc: "NanoCell · ThinQ AI · webOS"
+  },
+  {
+    id: 3, name: "Samsung Neo QLED 75\" 8K TV",
+    category: "Electronics", brand: "Samsung", price: 349999, stock: 4,
+    img: "https://images.unsplash.com/photo-1567690187548-f07b1d7bf5a9?w=400&h=300&fit=crop&auto=format",
+    desc: "Neo QLED · 8K AI Upscaling"
+  },
+  {
+    id: 4, name: "Sony WH-1000XM5 Headphones",
+    category: "Electronics", brand: "Sony", price: 29990, stock: 22,
+    img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop&auto=format",
+    desc: "ANC · 30hr battery · Hi-Res"
+  },
+  {
+    id: 5, name: "Apple AirPods Pro 2nd Gen",
+    category: "Electronics", brand: "Apple", price: 24900, stock: 30,
+    img: "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=400&h=300&fit=crop&auto=format",
+    desc: "H2 chip · ANC · MagSafe"
+  },
+  {
+    id: 6, name: "Bose QuietComfort 45 Headphones",
+    category: "Electronics", brand: "Bose", price: 26900, stock: 15,
+    img: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=400&h=300&fit=crop&auto=format",
+    desc: "ANC · 24hr · Bluetooth 5.1"
+  },
+  {
+    id: 7, name: "Philips Air Fryer HD9860",
+    category: "Electronics", brand: "Philips", price: 8499, stock: 40,
+    img: "https://images.unsplash.com/photo-1648723894993-56a9a52ae8ef?w=400&h=300&fit=crop&auto=format",
+    desc: "7L · Rapid Air · Digital"
+  },
+  {
+    id: 8, name: "Dyson V15 Detect Vacuum",
+    category: "Electronics", brand: "Dyson", price: 59900, stock: 6,
+    img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop&auto=format",
+    desc: "HEPA filter · LCD display"
+  },
+  {
+    id: 9, name: "Canon EOS R50 Mirrorless Camera",
+    category: "Electronics", brand: "Canon", price: 69990, stock: 9,
+    img: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=300&fit=crop&auto=format",
+    desc: "24.2MP · 4K video · DIGIC X"
+  },
+  {
+    id: 10, name: "Nikon Z30 Mirrorless Camera",
+    category: "Electronics", brand: "Nikon", price: 55990, stock: 7,
+    img: "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=400&h=300&fit=crop&auto=format",
+    desc: "20.9MP · 4K · Vlogger kit"
+  },
+  {
+    id: 11, name: "Sony WF-1000XM5 Earbuds",
+    category: "Electronics", brand: "Sony", price: 19990, stock: 25,
+    img: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&h=300&fit=crop&auto=format",
+    desc: "ANC · LDAC · 8hr battery"
+  },
+  {
+    id: 12, name: "JBL Flip 6 Bluetooth Speaker",
+    category: "Electronics", brand: "JBL", price: 9999, stock: 50,
+    img: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=300&fit=crop&auto=format",
+    desc: "IP67 · 12hr · PartyBoost"
+  },
+  {
+    id: 13, name: "Bose SoundLink Max Speaker",
+    category: "Electronics", brand: "Bose", price: 34900, stock: 12,
+    img: "https://images.unsplash.com/photo-1589003077984-894e133dabab?w=400&h=300&fit=crop&auto=format",
+    desc: "20hr · Wi-Fi & BT · IPX4"
+  },
+  {
+    id: 14, name: "Mi Smart Air Purifier 4 Pro",
+    category: "Electronics", brand: "Xiaomi", price: 12999, stock: 18,
+    img: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=400&h=300&fit=crop&auto=format",
+    desc: "HEPA · OLED · 60m² room"
+  },
+  {
+    id: 15, name: "Philips Trimmer BT3511",
+    category: "Electronics", brand: "Philips", price: 1499, stock: 80,
+    img: "https://images.unsplash.com/photo-1621607512022-6aecc4fed814?w=400&h=300&fit=crop&auto=format",
+    desc: "Turbo trim · 60min use"
+  },
+  {
+    id: 16, name: "Voltas 1.5T 5-Star Inverter AC",
+    category: "Electronics", brand: "Voltas", price: 39990, stock: 10,
+    img: "https://images.unsplash.com/photo-1527015175922-36a306cf0e20?w=400&h=300&fit=crop&auto=format",
+    desc: "Inverter · 5-star · Fast cooling"
+  },
+  {
+    id: 17, name: "Blue Star 1.5T 3-Star Window AC",
+    category: "Electronics", brand: "Blue Star", price: 28990, stock: 14,
+    img: "https://images.unsplash.com/photo-1527015175922-36a306cf0e20?w=400&h=300&fit=crop&auto=format",
+    desc: "3-star · Auto restart · Turbo cool"
+  },
+  {
+    id: 18, name: "Bosch 8kg Front Load Washing Machine",
+    category: "Electronics", brand: "Bosch", price: 49990, stock: 5,
+    img: "https://images.unsplash.com/photo-1626806819282-2c1dc01a5e0c?w=400&h=300&fit=crop&auto=format",
+    desc: "EcoSilence · SpeedPerfect"
+  },
+  {
+    id: 19, name: "LG 260L Double Door Refrigerator",
+    category: "Electronics", brand: "LG", price: 31990, stock: 9,
+    img: "https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?w=400&h=300&fit=crop&auto=format",
+    desc: "Smart Inverter · Frost Free"
+  },
+  {
+    id: 20, name: "Havells Cista 1200mm BLDC Fan",
+    category: "Electronics", brand: "Havells", price: 3299, stock: 45,
+    img: "https://images.unsplash.com/photo-1600618528240-fb9fc964b853?w=400&h=300&fit=crop&auto=format",
+    desc: "BLDC motor · Remote · 5-star"
+  },
+  {
+    id: 21, name: "GoPro HERO12 Black",
+    category: "Electronics", brand: "GoPro", price: 39990, stock: 13,
+    img: "https://images.unsplash.com/photo-1553406830-ef2513450d76?w=400&h=300&fit=crop&auto=format",
+    desc: "5.3K · HyperSmooth 6.0"
+  },
+  {
+    id: 22, name: "Kindle Paperwhite 11th Gen",
+    category: "Electronics", brand: "Amazon", price: 13999, stock: 35,
+    img: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=400&h=300&fit=crop&auto=format",
+    desc: "6.8\" · 300 ppi · 10-week battery"
+  },
+  {
+    id: 23, name: "Boat Airdopes 141 TWS Earbuds",
+    category: "Electronics", brand: "Boat", price: 1299, stock: 100,
+    img: "https://images.unsplash.com/photo-1631176093617-48fe2e28c22e?w=400&h=300&fit=crop&auto=format",
+    desc: "42hr · ENx · Bluetooth 5.1"
+  },
+  {
+    id: 24, name: "Realme Buds Air 5 Pro",
+    category: "Electronics", brand: "Realme", price: 3999, stock: 60,
+    img: "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=400&h=300&fit=crop&auto=format",
+    desc: "ANC 50dB · LDAC · 38hr"
+  },
+  {
+    id: 25, name: "Amazon Echo Dot 5th Gen",
+    category: "Electronics", brand: "Amazon", price: 4999, stock: 55,
+    img: "https://images.unsplash.com/photo-1512446816042-444d641267d4?w=400&h=300&fit=crop&auto=format",
+    desc: "Alexa · eero BT · clock display"
+  },
+
+  // ─── ACCESSORIES (25) ─────────────────────────────────────────────────────
+  {
+    id: 26, name: "Titan Edge Ultra Slim Watch",
+    category: "Accessories", brand: "Titan", price: 8995, stock: 22,
+    img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=300&fit=crop&auto=format",
+    desc: "Analog · Stainless steel · Sapphire"
+  },
+  {
+    id: 27, name: "Fastrack Analog Black Watch",
+    category: "Accessories", brand: "Fastrack", price: 2299, stock: 45,
+    img: "https://images.unsplash.com/photo-1533139502658-0198f920d8e8?w=400&h=300&fit=crop&auto=format",
+    desc: "Youth style · Metal bracelet"
+  },
+  {
+    id: 28, name: "Apple Watch Series 9 GPS 45mm",
+    category: "Accessories", brand: "Apple", price: 44900, stock: 15,
+    img: "https://images.unsplash.com/photo-1434493907317-a46b5bbe7834?w=400&h=300&fit=crop&auto=format",
+    desc: "S9 chip · Double tap · Bright display"
+  },
+  {
+    id: 29, name: "Samsung Galaxy Watch 6 Classic",
+    category: "Accessories", brand: "Samsung", price: 34999, stock: 18,
+    img: "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=400&h=300&fit=crop&auto=format",
+    desc: "Rotating bezel · ECG · BioActive"
+  },
+  {
+    id: 30, name: "Ray-Ban Wayfarer Sunglasses",
+    category: "Accessories", brand: "Ray-Ban", price: 8490, stock: 20,
+    img: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=300&fit=crop&auto=format",
+    desc: "UV400 · Acetate frame · Classic"
+  },
+  {
+    id: 31, name: "Oakley Holbrook Sunglasses",
+    category: "Accessories", brand: "Oakley", price: 12990, stock: 14,
+    img: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&h=300&fit=crop&auto=format",
+    desc: "Prizm lens · O Matter frame"
+  },
+  {
+    id: 32, name: "Pandora Rose Gold Bracelet",
+    category: "Accessories", brand: "Pandora", price: 7999, stock: 25,
+    img: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=400&h=300&fit=crop&auto=format",
+    desc: "Rose gold plated · Charm compatible"
+  },
+  {
+    id: 33, name: "Swarovski Crystal Necklace",
+    category: "Accessories", brand: "Swarovski", price: 6490, stock: 18,
+    img: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=300&fit=crop&auto=format",
+    desc: "Crystal pendant · Silver plated chain"
+  },
+  {
+    id: 34, name: "Malabar Gold 22K Ring",
+    category: "Accessories", brand: "Malabar Gold", price: 28999, stock: 8,
+    img: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&h=300&fit=crop&auto=format",
+    desc: "22K gold · BIS hallmark"
+  },
+  {
+    id: 35, name: "CaratLane Diamond Earrings",
+    category: "Accessories", brand: "CaratLane", price: 12499, stock: 12,
+    img: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&h=300&fit=crop&auto=format",
+    desc: "14K white gold · 0.15 ct diamond"
+  },
+  {
+    id: 36, name: "Titan Silver Chain Necklace",
+    category: "Accessories", brand: "Titan", price: 3499, stock: 30,
+    img: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=400&h=300&fit=crop&auto=format",
+    desc: "925 silver · Box chain · 18 inch"
+  },
+  {
+    id: 37, name: "Hidesign Milano Leather Handbag",
+    category: "Accessories", brand: "Hidesign", price: 4999, stock: 12,
+    img: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&h=300&fit=crop&auto=format",
+    desc: "Full grain leather · Spacious"
+  },
+  {
+    id: 38, name: "Wildcraft 30L Backpack",
+    category: "Accessories", brand: "Wildcraft", price: 1799, stock: 35,
+    img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=300&fit=crop&auto=format",
+    desc: "Water-resistant · Laptop sleeve"
+  },
+  {
+    id: 39, name: "Tommy Hilfiger Leather Wallet",
+    category: "Accessories", brand: "Tommy Hilfiger", price: 2999, stock: 40,
+    img: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=400&h=300&fit=crop&auto=format",
+    desc: "Genuine leather · RFID blocking"
+  },
+  {
+    id: 40, name: "Baggit Sling Bag",
+    category: "Accessories", brand: "Baggit", price: 1299, stock: 40,
+    img: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400&h=300&fit=crop&auto=format",
+    desc: "Vegan leather · Multiple pockets"
+  },
+  {
+    id: 41, name: "Zodiac Genuine Leather Belt",
+    category: "Accessories", brand: "Zodiac", price: 999, stock: 55,
+    img: "https://images.unsplash.com/photo-1624222247344-550fb60583dc?w=400&h=300&fit=crop&auto=format",
+    desc: "Genuine leather · Pin buckle · 38mm"
+  },
+  {
+    id: 42, name: "Peter England Formal Belt",
+    category: "Accessories", brand: "Peter England", price: 699, stock: 60,
+    img: "https://images.unsplash.com/photo-1553483965-91a573155f67?w=400&h=300&fit=crop&auto=format",
+    desc: "PU leather · Auto lock buckle"
+  },
+  {
+    id: 43, name: "New Era 9FIFTY Snapback Cap",
+    category: "Accessories", brand: "New Era", price: 2499, stock: 30,
+    img: "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=400&h=300&fit=crop&auto=format",
+    desc: "Flat brim · Adjustable snapback"
+  },
+  {
+    id: 44, name: "Puma Script Logo Cap",
+    category: "Accessories", brand: "Puma", price: 999, stock: 50,
+    img: "https://images.unsplash.com/photo-1521369909029-2afed882baee?w=400&h=300&fit=crop&auto=format",
+    desc: "Cotton twill · Curved visor"
+  },
+  {
+    id: 45, name: "Skybags Bingo 27L Backpack",
+    category: "Accessories", brand: "Skybags", price: 1599, stock: 45,
+    img: "https://images.unsplash.com/photo-1581605405669-fcdf81165afa?w=400&h=300&fit=crop&auto=format",
+    desc: "27L capacity · Rain cover · USB port"
+  },
+  {
+    id: 46, name: "Fossil Heritage Pendant Necklace",
+    category: "Accessories", brand: "Fossil", price: 3995, stock: 20,
+    img: "https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=400&h=300&fit=crop&auto=format",
+    desc: "Stainless steel · Gold-tone"
+  },
+  {
+    id: 47, name: "Zaveri Pearls Kundan Earrings",
+    category: "Accessories", brand: "Zaveri Pearls", price: 899, stock: 60,
+    img: "https://images.unsplash.com/photo-1630019852942-f89202989a59?w=400&h=300&fit=crop&auto=format",
+    desc: "Kundan · Jhumka style · Festive"
+  },
+  {
+    id: 48, name: "Aldo Metal Keychain Bag Charm",
+    category: "Accessories", brand: "Aldo", price: 799, stock: 70,
+    img: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=300&fit=crop&auto=format",
+    desc: "Zinc alloy · Gold tone · Bag clip"
+  },
+  {
+    id: 49, name: "Noise ColorFit Pro 5 Smart Watch",
+    category: "Accessories", brand: "Noise", price: 3999, stock: 55,
+    img: "https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=400&h=300&fit=crop&auto=format",
+    desc: "1.85\" AMOLED · BT calls · SpO2"
+  },
+  {
+    id: 50, name: "boAt Wave Flex Smart Watch",
+    category: "Accessories", brand: "Boat", price: 2499, stock: 65,
+    img: "https://images.unsplash.com/photo-1617043786394-f977fa12eddf?w=400&h=300&fit=crop&auto=format",
+    desc: "1.83\" HD display · 10 days battery"
+  },
+
+  // ─── GROCERY (25) ────────────────────────────────────────────────────────
+  {
+    id: 51, name: "Tata Gold Tea 500g",
+    category: "Grocery", brand: "Tata", price: 280, stock: 200,
+    img: "https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=400&h=300&fit=crop&auto=format",
+    desc: "Premium Assam CTC tea"
+  },
+  {
+    id: 52, name: "Aashirvaad Atta 10kg",
+    category: "Grocery", brand: "Aashirvaad", price: 470, stock: 150,
+    img: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=400&h=300&fit=crop&auto=format",
+    desc: "Whole wheat · MP chakki"
+  },
+  {
+    id: 53, name: "Fortune Sunflower Oil 5L",
+    category: "Grocery", brand: "Fortune", price: 699, stock: 120,
+    img: "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400&h=300&fit=crop&auto=format",
+    desc: "Refined · Vitamin E enriched"
+  },
+  {
+    id: 54, name: "India Gate Basmati Rice 5kg",
+    category: "Grocery", brand: "India Gate", price: 699, stock: 130,
+    img: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&h=300&fit=crop&auto=format",
+    desc: "Classic Basmati · Long grain"
+  },
+  {
+    id: 55, name: "Kissan Mixed Fruit Jam 700g",
+    category: "Grocery", brand: "Kissan", price: 189, stock: 180,
+    img: "https://images.unsplash.com/photo-1597528380307-0ad7bcd62c44?w=400&h=300&fit=crop&auto=format",
+    desc: "No added preservatives"
+  },
+  {
+    id: 56, name: "Maggi 2-Minute Noodles 12-pack",
+    category: "Grocery", brand: "Maggi", price: 216, stock: 250,
+    img: "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=400&h=300&fit=crop&auto=format",
+    desc: "Classic masala · 70g × 12"
+  },
+  {
+    id: 57, name: "Amul Butter 500g",
+    category: "Grocery", brand: "Amul", price: 275, stock: 180,
+    img: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=400&h=300&fit=crop&auto=format",
+    desc: "Pasteurised · Salted"
+  },
+  {
+    id: 58, name: "Britannia Good Day Biscuits 1kg",
+    category: "Grocery", brand: "Britannia", price: 150, stock: 200,
+    img: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&h=300&fit=crop&auto=format",
+    desc: "Butter cookies · Crunchy"
+  },
+  {
+    id: 59, name: "Dabur Honey 1kg",
+    category: "Grocery", brand: "Dabur", price: 440, stock: 120,
+    img: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=400&h=300&fit=crop&auto=format",
+    desc: "100% pure · No sugar added"
+  },
+  {
+    id: 60, name: "Haldiram's Aloo Bhujia 400g",
+    category: "Grocery", brand: "Haldiram's", price: 130, stock: 300,
+    img: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&h=300&fit=crop&auto=format",
+    desc: "Crispy · Classic namkeen"
+  },
+  {
+    id: 61, name: "MDH Chaat Masala 100g",
+    category: "Grocery", brand: "MDH", price: 85, stock: 250,
+    img: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400&h=300&fit=crop&auto=format",
+    desc: "Authentic blend · 100% natural"
+  },
+  {
+    id: 62, name: "Surf Excel Matic Front Load 2kg",
+    category: "Grocery", brand: "Surf Excel", price: 550, stock: 100,
+    img: "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=400&h=300&fit=crop&auto=format",
+    desc: "Deep clean · Protects fabric"
+  },
+  {
+    id: 63, name: "Vim Dishwash Liquid 2L",
+    category: "Grocery", brand: "Vim", price: 299, stock: 160,
+    img: "https://images.unsplash.com/photo-1585664811087-47f65abbad64?w=400&h=300&fit=crop&auto=format",
+    desc: "Lemon · Anti-bacterial"
+  },
+  {
+    id: 64, name: "Parle-G Biscuits 800g",
+    category: "Grocery", brand: "Parle", price: 80, stock: 500,
+    img: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400&h=300&fit=crop&auto=format",
+    desc: "Glucose biscuits · Family pack"
+  },
+  {
+    id: 65, name: "Nestlé KitKat 24-pack",
+    category: "Grocery", brand: "Nestlé", price: 480, stock: 200,
+    img: "https://images.unsplash.com/photo-1548907040-4baa42d10919?w=400&h=300&fit=crop&auto=format",
+    desc: "Milk chocolate · 13.5g × 24"
+  },
+  {
+    id: 66, name: "Tropicana Orange Juice 1L",
+    category: "Grocery", brand: "Tropicana", price: 130, stock: 150,
+    img: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400&h=300&fit=crop&auto=format",
+    desc: "No added sugar · Vitamin C"
+  },
+  {
+    id: 67, name: "Red Label Natural Care Tea 500g",
+    category: "Grocery", brand: "Brooke Bond", price: 260, stock: 180,
+    img: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=400&h=300&fit=crop&auto=format",
+    desc: "5 ayurvedic herbs · Rich taste"
+  },
+  {
+    id: 68, name: "Patanjali Cow Ghee 1kg",
+    category: "Grocery", brand: "Patanjali", price: 699, stock: 100,
+    img: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400&h=300&fit=crop&auto=format",
+    desc: "Pure desi ghee · Traditional"
+  },
+  {
+    id: 69, name: "MTR Upma Mix 500g",
+    category: "Grocery", brand: "MTR", price: 130, stock: 140,
+    img: "https://images.unsplash.com/photo-1630383249896-424e482df921?w=400&h=300&fit=crop&auto=format",
+    desc: "Ready in 5 min · South Indian taste"
+  },
+  {
+    id: 70, name: "Nescafé Classic Coffee 200g",
+    category: "Grocery", brand: "Nestlé", price: 485, stock: 120,
+    img: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=300&fit=crop&auto=format",
+    desc: "Instant coffee · Bold aroma"
+  },
+  {
+    id: 71, name: "Everest Garam Masala 100g",
+    category: "Grocery", brand: "Everest", price: 110, stock: 200,
+    img: "https://images.unsplash.com/photo-1506368249639-73a05d6f6488?w=400&h=300&fit=crop&auto=format",
+    desc: "11 spice blend · Premium"
+  },
+  {
+    id: 72, name: "Colgate MaxFresh Toothpaste 3-pack",
+    category: "Grocery", brand: "Colgate", price: 180, stock: 250,
+    img: "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=400&h=300&fit=crop&auto=format",
+    desc: "Cool mint · Whitening · 150g × 3"
+  },
+  {
+    id: 73, name: "Lifebuoy Soap 4-pack",
+    category: "Grocery", brand: "Lifebuoy", price: 90, stock: 350,
+    img: "https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=400&h=300&fit=crop&auto=format",
+    desc: "Antibacterial · Germ protection"
+  },
+  {
+    id: 74, name: "Saffola Gold Oil 5L",
+    category: "Grocery", brand: "Saffola", price: 849, stock: 100,
+    img: "https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?w=400&h=300&fit=crop&auto=format",
+    desc: "Blended edible oil · Heart-healthy"
+  },
+  {
+    id: 75, name: "Bournvita Nutrition Drink 1kg",
+    category: "Grocery", brand: "Cadbury", price: 450, stock: 130,
+    img: "https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?w=400&h=300&fit=crop&auto=format",
+    desc: "Chocolate malt · 5 vitamins"
+  },
+
+  // ─── MOBILES (25) ────────────────────────────────────────────────────────
+  {
+    id: 76, name: "Apple iPhone 15 Pro Max",
+    category: "Mobiles", brand: "Apple", price: 159900, stock: 12,
+    img: "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=400&h=300&fit=crop&auto=format",
+    desc: "A17 Pro · 48MP · Titanium design"
+  },
+  {
+    id: 77, name: "Samsung Galaxy S24 Ultra",
+    category: "Mobiles", brand: "Samsung", price: 134999, stock: 10,
+    img: "https://images.unsplash.com/photo-1610945264803-3687d2573f48?w=400&h=300&fit=crop&auto=format",
+    desc: "Snapdragon 8 Gen 3 · S Pen · 200MP"
+  },
+  {
+    id: 78, name: "OnePlus 12 5G",
+    category: "Mobiles", brand: "OnePlus", price: 64999, stock: 18,
+    img: "https://images.unsplash.com/photo-1574944985070-8f3ebc6b79d2?w=400&h=300&fit=crop&auto=format",
+    desc: "Snapdragon 8 Gen 3 · 50MP · 100W"
+  },
+  {
+    id: 79, name: "Xiaomi 14 Ultra",
+    category: "Mobiles", brand: "Xiaomi", price: 99999, stock: 9,
+    img: "https://images.unsplash.com/photo-1585060544812-6b45742d762f?w=400&h=300&fit=crop&auto=format",
+    desc: "Leica 1\" camera · Snapdragon 8 Gen 3"
+  },
+  {
+    id: 80, name: "Realme GT 6",
+    category: "Mobiles", brand: "Realme", price: 39999, stock: 25,
+    img: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=400&h=300&fit=crop&auto=format",
+    desc: "Snapdragon 8s Gen 3 · 120W · 6000mAh"
+  },
+  {
+    id: 81, name: "Vivo V30 Pro 5G",
+    category: "Mobiles", brand: "Vivo", price: 49999, stock: 20,
+    img: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=300&fit=crop&auto=format",
+    desc: "ZEISS optics · 50MP portrait"
+  },
+  {
+    id: 82, name: "OPPO Reno 11 Pro",
+    category: "Mobiles", brand: "OPPO", price: 39999, stock: 22,
+    img: "https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=400&h=300&fit=crop&auto=format",
+    desc: "MediaTek Dimensity 8200 · 80W"
+  },
+  {
+    id: 83, name: "Nothing Phone 2a",
+    category: "Mobiles", brand: "Nothing", price: 23999, stock: 30,
+    img: "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=400&h=300&fit=crop&auto=format",
+    desc: "Glyph Interface · Dimensity 7200"
+  },
+  {
+    id: 84, name: "iQOO Neo 9 Pro",
+    category: "Mobiles", brand: "iQOO", price: 36999, stock: 15,
+    img: "https://images.unsplash.com/photo-1567581935884-3349723552ca?w=400&h=300&fit=crop&auto=format",
+    desc: "Snapdragon 8 Gen 2 · 144Hz · 120W"
+  },
+  {
+    id: 85, name: "Motorola Edge 50 Ultra",
+    category: "Mobiles", brand: "Motorola", price: 59999, stock: 14,
+    img: "https://images.unsplash.com/photo-1591337676887-a217a6970a8a?w=400&h=300&fit=crop&auto=format",
+    desc: "Snapdragon 8s Gen 3 · pOLED · 125W"
+  },
+  {
+    id: 86, name: "Google Pixel 8a",
+    category: "Mobiles", brand: "Google", price: 52999, stock: 11,
+    img: "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=400&h=300&fit=crop&auto=format",
+    desc: "Tensor G3 · 7 years updates · OLED"
+  },
+  {
+    id: 87, name: "Samsung Galaxy A55 5G",
+    category: "Mobiles", brand: "Samsung", price: 38999, stock: 28,
+    img: "https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=400&h=300&fit=crop&auto=format",
+    desc: "Exynos 1480 · 50MP OIS · IP67"
+  },
+  {
+    id: 88, name: "Redmi Note 13 Pro+ 5G",
+    category: "Mobiles", brand: "Xiaomi", price: 29999, stock: 35,
+    img: "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?w=400&h=300&fit=crop&auto=format",
+    desc: "200MP · Dimensity 7200 · 120W"
+  },
+  {
+    id: 89, name: "Poco X6 Pro 5G",
+    category: "Mobiles", brand: "Poco", price: 26999, stock: 40,
+    img: "https://images.unsplash.com/photo-1605236453806-6ff36851218e?w=400&h=300&fit=crop&auto=format",
+    desc: "Dimensity 8300 Ultra · 67W · 144Hz"
+  },
+  {
+    id: 90, name: "Lava Blaze Curve 5G",
+    category: "Mobiles", brand: "Lava", price: 13999, stock: 50,
+    img: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&h=300&fit=crop&auto=format",
+    desc: "Dimensity 6080 · 5000mAh · Curved"
+  },
+  {
+    id: 91, name: "Nokia G42 5G",
+    category: "Mobiles", brand: "Nokia", price: 15999, stock: 30,
+    img: "https://images.unsplash.com/photo-1520923642038-b4259acecbd7?w=400&h=300&fit=crop&auto=format",
+    desc: "Snapdragon 480+ · Repairable design"
+  },
+  {
+    id: 92, name: "Tecno Pova 6 Pro 5G",
+    category: "Mobiles", brand: "Tecno", price: 18999, stock: 45,
+    img: "https://images.unsplash.com/photo-1572635196243-4dd75fbdbd7f?w=400&h=300&fit=crop&auto=format",
+    desc: "Dimensity 6080 · 70W · 6000mAh"
+  },
+  {
+    id: 93, name: "iPhone 15 128GB",
+    category: "Mobiles", brand: "Apple", price: 79900, stock: 20,
+    img: "https://images.unsplash.com/photo-1587840171670-8b850147754e?w=400&h=300&fit=crop&auto=format",
+    desc: "A16 Bionic · Dynamic Island · USB-C"
+  },
+  {
+    id: 94, name: "Samsung Galaxy Z Fold 6",
+    category: "Mobiles", brand: "Samsung", price: 164999, stock: 6,
+    img: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400&h=300&fit=crop&auto=format",
+    desc: "Foldable · Snapdragon 8 Gen 3 · 50MP"
+  },
+  {
+    id: 95, name: "OnePlus Nord CE4",
+    category: "Mobiles", brand: "OnePlus", price: 24999, stock: 32,
+    img: "https://images.unsplash.com/photo-1583573636402-f00cc3c0e0e1?w=400&h=300&fit=crop&auto=format",
+    desc: "Snapdragon 7s Gen 2 · 100W · AMOLED"
+  },
+  {
+    id: 96, name: "Realme Narzo 70 Pro",
+    category: "Mobiles", brand: "Realme", price: 19999, stock: 38,
+    img: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=300&fit=crop&auto=format",
+    desc: "Dimensity 7050 · 50MP Sony · 67W"
+  },
+  {
+    id: 97, name: "Vivo Y200 5G",
+    category: "Mobiles", brand: "Vivo", price: 22999, stock: 28,
+    img: "https://images.unsplash.com/photo-1628815113969-0487917e8b76?w=400&h=300&fit=crop&auto=format",
+    desc: "Snapdragon 4 Gen 1 · 44W · 6000mAh"
+  },
+  {
+    id: 98, name: "OPPO A79 5G",
+    category: "Mobiles", brand: "OPPO", price: 19999, stock: 35,
+    img: "https://images.unsplash.com/photo-1533228100845-08145b01de14?w=400&h=300&fit=crop&auto=format",
+    desc: "Dimensity 6020 · 5000mAh · 33W"
+  },
+  {
+    id: 99, name: "Infinix GT 20 Pro",
+    category: "Mobiles", brand: "Infinix", price: 21999, stock: 25,
+    img: "https://images.unsplash.com/photo-1660310284056-cccf9fb5c109?w=400&h=300&fit=crop&auto=format",
+    desc: "Dimensity 8200 · 260Hz touch · 45W"
+  },
+  {
+    id: 100, name: "Motorola Moto G85 5G",
+    category: "Mobiles", brand: "Motorola", price: 17999, stock: 42,
+    img: "https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=400&h=300&fit=crop&auto=format",
+    desc: "Snapdragon 6s Gen 3 · pOLED · 50W"
+  },
+
+  // ─── LAPTOPS (25) ────────────────────────────────────────────────────────
+  {
+    id: 101, name: "Apple MacBook Air M3 13\"",
+    category: "Laptops", brand: "Apple", price: 114900, stock: 12,
+    img: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&h=300&fit=crop&auto=format",
+    desc: "M3 chip · 8GB RAM · 256GB SSD"
+  },
+  {
+    id: 102, name: "Apple MacBook Pro M4 14\"",
+    category: "Laptops", brand: "Apple", price: 199900, stock: 7,
+    img: "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=400&h=300&fit=crop&auto=format",
+    desc: "M4 Pro · 24GB · Liquid Retina XDR"
+  },
+  {
+    id: 103, name: "Dell XPS 15 (2025)",
+    category: "Laptops", brand: "Dell", price: 169990, stock: 6,
+    img: "https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=400&h=300&fit=crop&auto=format",
+    desc: "Core Ultra 9 · RTX 4070 · OLED"
+  },
+  {
+    id: 104, name: "HP Spectre x360 14",
+    category: "Laptops", brand: "HP", price: 149990, stock: 8,
+    img: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400&h=300&fit=crop&auto=format",
+    desc: "Core Ultra 7 · OLED · 2-in-1"
+  },
+  {
+    id: 105, name: "Lenovo ThinkPad X1 Carbon Gen 12",
+    category: "Laptops", brand: "Lenovo", price: 159990, stock: 5,
+    img: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&h=300&fit=crop&auto=format",
+    desc: "Ultra 7 · 32GB · MIL-SPEC"
+  },
+  {
+    id: 106, name: "ASUS ROG Zephyrus G16",
+    category: "Laptops", brand: "ASUS", price: 189990, stock: 4,
+    img: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=400&h=300&fit=crop&auto=format",
+    desc: "RTX 4090 · R9 · 240Hz OLED"
+  },
+  {
+    id: 107, name: "Acer Nitro V 15",
+    category: "Laptops", brand: "Acer", price: 69990, stock: 20,
+    img: "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=400&h=300&fit=crop&auto=format",
+    desc: "RTX 4060 · Ryzen 7 · 144Hz"
+  },
+  {
+    id: 108, name: "Lenovo IdeaPad Gaming 3",
+    category: "Laptops", brand: "Lenovo", price: 59990, stock: 25,
+    img: "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=400&h=300&fit=crop&auto=format",
+    desc: "RTX 3050 · Ryzen 5 · 120Hz"
+  },
+  {
+    id: 109, name: "HP Victus 16",
+    category: "Laptops", brand: "HP", price: 74990, stock: 15,
+    img: "https://images.unsplash.com/photo-1484788984921-03950022c9ef?w=400&h=300&fit=crop&auto=format",
+    desc: "RTX 4060 · Intel i7 · 144Hz"
+  },
+  {
+    id: 110, name: "Dell Inspiron 15 3535",
+    category: "Laptops", brand: "Dell", price: 49990, stock: 30,
+    img: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=300&fit=crop&auto=format",
+    desc: "Ryzen 5 7520U · FHD · 512GB"
+  },
+  {
+    id: 111, name: "Acer Aspire 7 A715",
+    category: "Laptops", brand: "Acer", price: 54999, stock: 18,
+    img: "https://images.unsplash.com/photo-1555421689-491a97ff2040?w=400&h=300&fit=crop&auto=format",
+    desc: "RTX 2050 · Ryzen 5 · 16GB"
+  },
+  {
+    id: 112, name: "HP 15s Intel Core i5",
+    category: "Laptops", brand: "HP", price: 54990, stock: 22,
+    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop&auto=format",
+    desc: "Core i5-1235U · Micro-edge · FHD"
+  },
+  {
+    id: 113, name: "Lenovo IdeaPad Slim 3",
+    category: "Laptops", brand: "Lenovo", price: 39990, stock: 35,
+    img: "https://images.unsplash.com/photo-1504707748692-419802cf939d?w=400&h=300&fit=crop&auto=format",
+    desc: "Ryzen 5 · 8GB · 512GB · FHD"
+  },
+  {
+    id: 114, name: "ASUS VivoBook 16",
+    category: "Laptops", brand: "ASUS", price: 52990, stock: 20,
+    img: "https://images.unsplash.com/photo-1593642634524-b40b5baae6bb?w=400&h=300&fit=crop&auto=format",
+    desc: "i5-12500H · 16\" FHD+ · 512GB"
+  },
+  {
+    id: 115, name: "Microsoft Surface Laptop 6",
+    category: "Laptops", brand: "Microsoft", price: 129990, stock: 9,
+    img: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&h=300&fit=crop&auto=format",
+    desc: "Ultra 5 · Copilot+ PC · 13.5\""
+  },
+  {
+    id: 116, name: "Realme Book Prime",
+    category: "Laptops", brand: "Realme", price: 44999, stock: 28,
+    img: "https://images.unsplash.com/photo-1547082299-de196ea013d6?w=400&h=300&fit=crop&auto=format",
+    desc: "Intel i5 · 2K IPS · 65W USB-C"
+  },
+  {
+    id: 117, name: "HP Omen 16 Gaming Laptop",
+    category: "Laptops", brand: "HP", price: 119990, stock: 7,
+    img: "https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?w=400&h=300&fit=crop&auto=format",
+    desc: "RTX 4070 · i9 · 165Hz QHD"
+  },
+  {
+    id: 118, name: "Lenovo Legion Pro 5i",
+    category: "Laptops", brand: "Lenovo", price: 139990, stock: 6,
+    img: "https://images.unsplash.com/photo-1619555399737-bd66f5e5f0e4?w=400&h=300&fit=crop&auto=format",
+    desc: "RTX 4080 · i9 · 240Hz"
+  },
+  {
+    id: 119, name: "MSI Thin 15",
+    category: "Laptops", brand: "MSI", price: 59990, stock: 15,
+    img: "https://images.unsplash.com/photo-1609240601859-1aa4e1d6d5d1?w=400&h=300&fit=crop&auto=format",
+    desc: "RTX 3050 · Ryzen 5 · 144Hz"
+  },
+  {
+    id: 120, name: "Asus ZenBook 14 OLED",
+    category: "Laptops", brand: "ASUS", price: 84990, stock: 12,
+    img: "https://images.unsplash.com/photo-1618424181497-157f25b6ddd5?w=400&h=300&fit=crop&auto=format",
+    desc: "Ultra 7 · 2.8K OLED · 800 nits"
+  },
+  {
+    id: 121, name: "Samsung Galaxy Book4 Pro 360",
+    category: "Laptops", brand: "Samsung", price: 169990, stock: 5,
+    img: "https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=400&h=300&fit=crop&auto=format",
+    desc: "Ultra 7 · 3K AMOLED · 2-in-1"
+  },
+  {
+    id: 122, name: "Infinix INBook X2 Plus",
+    category: "Laptops", brand: "Infinix", price: 29990, stock: 40,
+    img: "https://images.unsplash.com/photo-1612422656768-d5e4ec31fac0?w=400&h=300&fit=crop&auto=format",
+    desc: "i5-1235U · FHD IPS · 65W"
+  },
+  {
+    id: 123, name: "Dell G15 Gaming Laptop",
+    category: "Laptops", brand: "Dell", price: 79990, stock: 14,
+    img: "https://images.unsplash.com/photo-1664575599736-c5197c684128?w=400&h=300&fit=crop&auto=format",
+    desc: "RTX 4060 · i7 · 165Hz"
+  },
+  {
+    id: 124, name: "HP EliteBook 840 G11",
+    category: "Laptops", brand: "HP", price: 129990, stock: 8,
+    img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop&auto=format",
+    desc: "Ultra 7 · Sure View · EcoSmart"
+  },
+  {
+    id: 125, name: "Acer Swift X 14 OLED",
+    category: "Laptops", brand: "Acer", price: 89990, stock: 11,
+    img: "https://images.unsplash.com/photo-1629131726692-1accd0c53ce0?w=400&h=300&fit=crop&auto=format",
+    desc: "Ultra 5 · RTX 4050 · 2.8K OLED"
+  },
+];
+
+// Category display config
+const CATEGORY_META = {
+  "Electronics":  { label: "Electronics" },
+  "Accessories":  { label: "Accessories" },
+  "Grocery":      { label: "Grocery" },
+  "Mobiles":      { label: "Mobiles" },
+  "Laptops":      { label: "Laptops" },
+};

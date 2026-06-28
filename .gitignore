@@ -1,0 +1,71 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# Environment Variables
+.env
+
+# VS Code
+.vscode/
+
+# JetBrains
+.idea/
+
+# Python cache
+.pytest_cache/
+.mypy_cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# Logs
+*.log
+
+# Uploaded PDFs
+uploads/
+*.pdf
+
+# Local database
+*.db
+*.sqlite3
+
+# NLTK
+nltk_data/
+
+# Models (if stored locally)
+models/
+
+# Temporary files
+temp/
+tmp/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Render
+.render/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Node (if frontend is inside same project)
+node_modules/
+npm-debug.log
+
+# FAISS (if used locally)
+*.faiss
+*.pkl
+*.index
