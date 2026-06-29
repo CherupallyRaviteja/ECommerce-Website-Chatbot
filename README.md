@@ -74,7 +74,7 @@ This project demonstrates production-grade AI techniques applied to e-commerce:
 - **Strict Answer Grounding**
   - Gemini 2.5 Flash is forbidden from using pretrained knowledge
   - Answers are semantically validated against retrieved context
-  - Falls back to `"I don't know."` when confidence is low
+  - Falls back to `"The provided documents do not contain this information""` when confidence is low
 
 - **Production-Ready Backend**
   - FastAPI with CORS support for local and Vercel deployments
@@ -137,7 +137,7 @@ This project demonstrates production-grade AI techniques applied to e-commerce:
 |---|---|
 | Answer Generation | Google Gemini 2.5 Flash |
 | Query Router / Planner | Llama 3.3 70B via Groq |
-| Embeddings | `all-MiniLM-L6-v2` (Sentence Transformers) |
+| Embeddings | Google Gemini Embedding (gemini-embedding-001) |
 
 ### Backend & Data
 | Component | Technology |
@@ -243,8 +243,7 @@ DATABASE_URL=postgresql://user:pass@host/db?sslmode=require
 | Setting | Value | Description |
 |---|---|---|
 | `MODEL` | `gemini-2.5-flash` | Gemini model for answer generation |
-| `EMBED_MODEL` | `all-MiniLM-L6-v2` | Sentence embedding model |
-| `EMBED_DIM` | `384` | Embedding vector dimension |
+| `EMBED_DIM` | `768` | Embedding vector dimension |
 | `FAISS_TOP_K` | `4` | Top chunks retrieved per query |
 | `SIM_THRESHOLD` | `0.3` | Minimum retrieval similarity score |
 

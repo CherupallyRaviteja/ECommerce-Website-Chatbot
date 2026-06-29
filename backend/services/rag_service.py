@@ -58,7 +58,7 @@ class RAGService:
 
     def retrieve(self, query, top_k=5):
         qv = get_embedding(query)
-        vec = ",".join(map(str, qv.tolist()))
+        vec = "[" + ",".join(map(str, qv)) + "]"
 
         self.cur.execute("""
         SELECT
@@ -81,11 +81,11 @@ class RAGService:
         LIMIT %s
         """,
         (
-            f"[{vec}]",
+            vec,
             query,
             query,
-            f"[{vec}]",
-            f"[{vec}]",
+            vec,
+            vec,
             query,
             top_k
         ))
