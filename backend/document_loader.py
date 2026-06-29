@@ -38,7 +38,7 @@ def load_pdf(file_path):
             vectors.append(vector)
 
         for chunk, vector in zip(chunks, vectors):
-
+            
             documents.append({
                 "source": os.path.basename(file_path),
                 "page": page_num,

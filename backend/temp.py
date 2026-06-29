@@ -1,21 +1,13 @@
-from services.planner_service import PlannerService
-from services.knowledge_service import KnowledgeService
-from generator import generate_website_answer
-from controller import route
-planner = PlannerService()
-service = KnowledgeService()
+import os
+import psutil
+from sentence_transformers import SentenceTransformer
 
-while True:
-    query = input("\nYou: ")
+process = psutil.Process(os.getpid())
 
-    if query.lower() == "exit":
-        break
+print(f"Before loading: {process.memory_info().rss / 1024 / 1024:.2f} MB")
 
-    try:
-        result = route(query)
-        answer = generate_website_answer(query, result)
-        print("\n Output:")
-        print(answer)
+model = SentenceTransformer("all-MiniLM-L6-v2")
 
-    except Exception as e:
-        print(e)
+print(f"After loading: {process.memory_info().rss / 1024 / 1024:.2f} MB")
+
+input("Press Enter to exit...")

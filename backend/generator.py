@@ -9,11 +9,11 @@ def generate_answer(query, contexts, scores=None, sim_threshold=0.35):
 
     # 1️⃣ Reject if no retrieved context
     if not contexts or len(contexts) == 0:
-        return "I don't know."
+        return "The provided documents do not contain this information"
 
     # 2️⃣ Reject if top retrieval score is too low
     if scores is not None and len(scores) > 0 and scores[0] < 0.25:
-        return "I don't know."
+        return "The provided documents do not contain this information"
 
     # 3️⃣ Join context
     context_text = "\n\n".join(contexts)
@@ -38,7 +38,7 @@ def generate_answer(query, contexts, scores=None, sim_threshold=0.35):
         answer = resp.text.strip()
 
         if not answer or "i don't know" in answer.lower():
-            return "I don't know."
+            return "The provided documents do not contain this information"
 
         # 6️⃣ Post-generation validation: check similarity between context & answer
         embed_model = get_embed_model()
@@ -49,13 +49,13 @@ def generate_answer(query, contexts, scores=None, sim_threshold=0.35):
         # 7️⃣ Block if the answer doesn’t semantically match context
         if sim < sim_threshold:
             print(f"⚠️ Context–answer similarity too low ({sim:.2f}), discarding.")
-            return "I don't know."
+            return "The provided documents do not contain this information"
 
         return answer
 
     except Exception as e:
         print("⚠️ Connection failed:", e)
-        return "I don't know."
+        return "The provided documents do not contain this information"
 
 def generate_website_answer(query, context):
     """
@@ -65,7 +65,7 @@ def generate_website_answer(query, context):
 
     # No context
     if not context:
-        return "I don't know."
+        return "We don't have that information available at the moment."
 
     # Convert Python object to readable JSON
     if isinstance(context, (dict, list)):
@@ -80,7 +80,7 @@ def generate_website_answer(query, context):
     - Use ONLY the information in the context.
     - Do NOT invent products, prices, stock, policies or order details.
     - If the context does not contain the answer, reply exactly:
-    "I don't know."
+        "We don't have that information available at the moment."
     - Be concise and friendly.
     - When multiple products are available, recommend the most relevant ones.
     - Mention prices and stock only if available in the context.
@@ -101,13 +101,13 @@ def generate_website_answer(query, context):
         answer = response.text.strip()
 
         if not answer:
-            return "I don't know."
+            return "We don't have that information available at the moment."
 
         return answer
 
     except Exception as e:
         print("Generation Error:", e)
-        return "I don't know."
+        return "We don't have that information available at the moment."
 
 if __name__ == "__main__":
     print("🧠 Generator ready")

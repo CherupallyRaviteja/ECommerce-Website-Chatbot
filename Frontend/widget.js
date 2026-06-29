@@ -592,7 +592,7 @@
 ];
 
 if (greetings.includes(text.toLowerCase())) {
-
+    messageHistory.push({ role: "user", content: text });
     addBotMessage(
         {
             tool: "website",
@@ -606,6 +606,7 @@ if (greetings.includes(text.toLowerCase())) {
         },
         "Hello! 👋 Welcome to ShopMart AI. How can I help you today?"
     );
+    return;
 }
     input.value = "";
     input.style.height = "auto";
