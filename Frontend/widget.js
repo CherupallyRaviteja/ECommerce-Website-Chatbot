@@ -606,9 +606,6 @@ if (greetings.includes(text.toLowerCase())) {
         },
         "Hello! 👋 Welcome to ShopMart AI. How can I help you today?"
     );
-
-    input.value = "";
-    return;
 }
     input.value = "";
     input.style.height = "auto";

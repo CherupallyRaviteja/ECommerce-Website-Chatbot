@@ -28,10 +28,14 @@ def load_pdf(file_path):
         chunks = watson_chunking(page_text)
 
         embed_model = get_embed_model()
-        vectors = embed_model.encode(
-            chunks,
-            convert_to_numpy=True
-        )
+        vectors = []
+
+        for chunk in chunks:
+            vector = embed_model.encode(
+                chunk,
+                convert_to_numpy=True
+            )
+            vectors.append(vector)
 
         for chunk, vector in zip(chunks, vectors):
 
