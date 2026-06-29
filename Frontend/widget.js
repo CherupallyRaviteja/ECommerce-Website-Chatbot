@@ -413,13 +413,13 @@
     </div>
 
     <div id="sm-quick-bar">
-      <span class="sm-qr">Latest Mobiles</span>
-      <span class="sm-qr">Best Laptops</span>
-      <span class="sm-qr">Today's Offers</span>
+      <span class="sm-qr">Samsung Mobiles</span>
+      <span class="sm-qr">Laptops under 80000</span>
+      <span class="sm-qr">Whats in my cart</span>
       <span class="sm-qr">Track Order</span>
       <span class="sm-qr">Return Policy</span>
       <span class="sm-qr">Shipping Charges</span>
-      <span class="sm-qr">Warranty Info</span>
+      <span class="sm-qr">Refund duration</span>
       <span class="sm-qr">Clear Chat</span>
     </div>
 

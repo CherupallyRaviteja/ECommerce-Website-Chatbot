@@ -9,13 +9,14 @@ class RAGService:
     def __init__(self):
         init_database()
         self.conn = psycopg2.connect(DATABASE_URL)
-        self.cur = self.conn.cursor()
 
     def add_pdf(self, path):
+        conn = psycopg2.connect(DATABASE_URL)
+        cur = conn.cursor() 
         try:
             documents = load_pdf(path)
             filename = os.path.basename(path)
-            self.cur.execute(
+            cur.execute(
                 """
                 INSERT INTO uploaded_pdfs (
                     filename,
@@ -32,10 +33,10 @@ class RAGService:
                 )
             )
 
-            pdf_id = self.cur.fetchone()[0]
+            pdf_id = cur.fetchone()[0]
             for item in documents:
                 vec = "[" + ",".join(map(str, item["embedding"])) + "]"
-                self.cur.execute(
+                cur.execute(
                     """
                     INSERT INTO documents (pdf_id,page,content,embedding,tsv)
                     VALUES (%s,%s,%s,%s::vector,to_tsvector('english', %s))
@@ -48,49 +49,59 @@ class RAGService:
                         item["content"]
                     )
                 )
-                self.conn.commit()
+                conn.commit()
             print("PDF ADDED ✅")
             return True
 
         except Exception as e:
-            self.conn.rollback()
+            conn.rollback()
             raise e
+        
+        finally:
+            cur.close()
+            conn.close()
 
     def retrieve(self, query, top_k=5):
-        qv = get_embedding(query)
-        vec = "[" + ",".join(map(str, qv)) + "]"
-
-        self.cur.execute("""
-        SELECT
-            d.content,
-            p.filename,
-            d.page,
-            1 - (d.embedding <=> %s::vector) AS vec_score,
-            ts_rank(d.tsv, plainto_tsquery(%s)) AS text_score
-        FROM documents d
-        JOIN uploaded_pdfs p
-            ON d.pdf_id = p.id
-        WHERE
-            d.tsv @@ plainto_tsquery(%s)
-            OR d.embedding <=> %s::vector < 0.8
-        ORDER BY
+        conn = psycopg2.connect(DATABASE_URL)
+        cur = conn.cursor()
+        try:
+            qv = get_embedding(query)
+            vec = "[" + ",".join(map(str, qv)) + "]"
+            cur.execute("""
+            SELECT
+                d.content,
+                p.filename,
+                d.page,
+                1 - (d.embedding <=> %s::vector) AS vec_score,
+                ts_rank(d.tsv, plainto_tsquery(%s)) AS text_score
+            FROM documents d
+            JOIN uploaded_pdfs p
+                ON d.pdf_id = p.id
+            WHERE
+                d.tsv @@ plainto_tsquery(%s)
+                OR d.embedding <=> %s::vector < 0.8
+            ORDER BY
+                (
+                    0.6 * (1 - (d.embedding <=> %s::vector)) +
+                    0.4 * ts_rank(d.tsv, plainto_tsquery(%s))
+                ) DESC
+            LIMIT %s
+            """,
             (
-                0.6 * (1 - (d.embedding <=> %s::vector)) +
-                0.4 * ts_rank(d.tsv, plainto_tsquery(%s))
-            ) DESC
-        LIMIT %s
-        """,
-        (
-            vec,
-            query,
-            query,
-            vec,
-            vec,
-            query,
-            top_k
-        ))
+                vec,
+                query,
+                query,
+                vec,
+                vec,
+                query,
+                top_k
+            ))
 
-        return self.cur.fetchall()
+            return cur.fetchall()
+        
+        finally:
+            cur.close()
+            conn.close()
     
     def get_documents(self):
         self.cur.execute("""

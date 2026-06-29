@@ -7,9 +7,8 @@ from generator import generate_website_answer,generate_answer
 
 planner = PlannerService()
 knowledge = KnowledgeService()
-rag = RAGService()
 
-def route(q):
+def route(q,rag):
 
     plan = planner.plan(q)
 
@@ -41,6 +40,10 @@ def route(q):
         print("Bot:", answer)
         print("\nSources:")
         sources = {source: page for source, page in set(sources)}  # Remove duplicates
+        if sources:
+            answer += "\n\n📄 Sources:\n"
+            for source, page in sources.items():
+                answer += f"• {source} (Page {page})\n"
         return {"answer": answer, "tool": "pdf","sources": sources,}
     
     elif plan["tool"] == "order" or plan["tool"] == "cart":

@@ -5,7 +5,7 @@ from controller import route
 from fastapi import UploadFile, File
 from services.rag_service import RAGService
 
-rag = RAGService()
+
 app = FastAPI()
 
 app.add_middleware(
@@ -27,10 +27,8 @@ def read_root():
 
 @app.post("/chat")
 def chat(request: ChatRequest):
-
-    result = route(
-        request.query
-    )
+    rag = RAGService()
+    result = route(request.query,rag)
     return result
 
 import os
@@ -41,7 +39,7 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @app.post("/upload-pdf")
 def upload_pdf(file: UploadFile = File(...)):
-
+    rag = RAGService()
     file_path = os.path.join(UPLOAD_FOLDER, file.filename)
 
     with open(file_path, "wb") as buffer:
