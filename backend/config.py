@@ -22,7 +22,16 @@ POPPLER_BIN = r"C:\poppler\Library\bin"
 if POPPLER_BIN not in os.environ["PATH"]:
     os.environ["PATH"] = POPPLER_BIN + os.pathsep + os.environ["PATH"]
 
-embed_model = SentenceTransformer(EMBED_MODEL)
+embed_model = None
+
+def get_embed_model():
+    global embed_model
+
+    if embed_model is None:
+        print("Loading embedding model...")
+        embed_model = SentenceTransformer(EMBED_MODEL)
+
+    return embed_model
 
 if __name__ == "__main__":
     print("✅ Config loaded")

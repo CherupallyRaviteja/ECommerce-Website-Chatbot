@@ -1,5 +1,5 @@
 import numpy as np
-from config import MODEL, embed_model
+from config import MODEL, get_embed_model
 import json
 def cosine_sim(a, b):
     return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
@@ -41,6 +41,7 @@ def generate_answer(query, contexts, scores=None, sim_threshold=0.35):
             return "I don't know."
 
         # 6️⃣ Post-generation validation: check similarity between context & answer
+        embed_model = get_embed_model()
         ans_vec = embed_model.encode(answer, convert_to_numpy=True)
         ctx_vec = embed_model.encode(context_text, convert_to_numpy=True)
         sim = cosine_sim(ans_vec, ctx_vec)
