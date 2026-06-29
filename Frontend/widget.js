@@ -593,6 +593,12 @@
 
 if (greetings.includes(text.toLowerCase())) {
     messageHistory.push({ role: "user", content: text });
+    input.value = "";
+    input.style.height = "auto";
+    addUserBubble(text);
+    showTyping();
+    sendBtn.disabled = true;
+    hideTyping();
     addBotMessage(
         {
             tool: "website",

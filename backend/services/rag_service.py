@@ -34,7 +34,7 @@ class RAGService:
 
             pdf_id = self.cur.fetchone()[0]
             for item in documents:
-                vec = ",".join(map(str, item["embedding"].tolist()))
+                vec = "[" + ",".join(map(str, item["embedding"])) + "]"
                 self.cur.execute(
                     """
                     INSERT INTO documents (pdf_id,page,content,embedding,tsv)
@@ -44,7 +44,7 @@ class RAGService:
                         pdf_id,
                         item["page"],
                         item["content"],
-                        f"[{vec}]",
+                        vec,
                         item["content"]
                     )
                 )
