@@ -66,6 +66,9 @@ class RAGService:
         cur = conn.cursor()
         try:
             qv = get_embedding(query)
+            if qv is None:
+                return None
+
             vec = "[" + ",".join(map(str, qv)) + "]"
             cur.execute("""
             SELECT
@@ -98,6 +101,10 @@ class RAGService:
             ))
 
             return cur.fetchall()
+        
+        except psycopg2.Error as e:
+            print("Database Error:", e)
+            return None
         
         finally:
             cur.close()

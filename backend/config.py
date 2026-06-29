@@ -26,15 +26,20 @@ if POPPLER_BIN not in os.environ["PATH"]:
 
 
 def get_embedding(text):
-    response = client.models.embed_content(
-        model="gemini-embedding-001",
-        contents=text,
-        config=types.EmbedContentConfig(
-            task_type="RETRIEVAL_DOCUMENT",
-            output_dimensionality=EMBED_DIM,
-        ),
-    )
-    return response.embeddings[0].values
+    try:
+        response = client.models.embed_content(
+            model="gemini-embedding-001",
+            contents=text,
+            config=types.EmbedContentConfig(
+                task_type="RETRIEVAL_DOCUMENT",
+                output_dimensionality=EMBED_DIM,
+            ),
+        )
+        return response.embeddings[0].values
+    
+    except Exception as e:
+        print("Unexpected embedding error:", e)
+        return None
 
 
 if __name__ == "__main__":

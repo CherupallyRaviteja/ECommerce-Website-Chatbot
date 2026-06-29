@@ -9,8 +9,13 @@ planner = PlannerService()
 knowledge = KnowledgeService()
 
 def route(q,rag):
-
-    plan = planner.plan(q)
+    try:
+        plan = planner.plan(q)
+    except Exception:
+        return {
+                    "answer":"The AI Service is temporarily unavailable.",
+                    "tool":"website"
+                }
 
     if plan["tool"] == "products":
         products = knowledge.search_products(plan["filters"])
@@ -24,6 +29,11 @@ def route(q,rag):
     
     elif plan["tool"] == "pdf":
         results = rag.retrieve(q)
+        if results == None:
+           return {
+            "answer":"Unable to search the uploaded documents right now.",
+            "tool":"pdf"
+        }
 
         score = f"Retrieved {len(results)} results. Top score: {results[0][3] if results else 'N/A'}"
         if not results or results[0][3] < SIM_THRESHOLD:
@@ -35,8 +45,16 @@ def route(q,rag):
         for content, source, page, score, *_ in results:
             contexts.append(content)
             sources.append((source, page))
-
-        answer = generate_answer(q, contexts)
+        
+        try:
+            answer = generate_answer(q, contexts)
+        except Exception as e:
+            print(e)
+            return {
+                "answer": "I'm unable to generate a response at the moment. Please try again shortly.",
+                "tool": "pdf"
+            }
+        
         print("Bot:", answer)
         print("\nSources:")
         sources = {source: page for source, page in set(sources)}  # Remove duplicates
