@@ -1,6 +1,6 @@
 import os
 import fitz
-from config import get_embed_model
+from config import get_embedding
 from chunking import watson_chunking
 
 def pdf_to_text(pdf_path):
@@ -26,15 +26,10 @@ def load_pdf(file_path):
     for page_num, page_text in pages:
 
         chunks = watson_chunking(page_text)
-
-        embed_model = get_embed_model()
         vectors = []
 
         for chunk in chunks:
-            vector = embed_model.encode(
-                chunk,
-                convert_to_numpy=True
-            )
+            vector = get_embedding(chunk)
             vectors.append(vector)
 
         for chunk, vector in zip(chunks, vectors):

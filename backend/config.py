@@ -24,14 +24,15 @@ if POPPLER_BIN not in os.environ["PATH"]:
 
 embed_model = None
 
-def get_embed_model():
-    global embed_model
+import google.generativeai as genai
 
-    if embed_model is None:
-        print("Loading embedding model...")
-        embed_model = SentenceTransformer(EMBED_MODEL)
-
-    return embed_model
+def get_embedding(text):
+    response = genai.embed_content(
+        model="models/embedding-001",
+        content=text,
+        task_type="retrieval_document"
+    )
+    return response["embedding"]
 
 if __name__ == "__main__":
     print("✅ Config loaded")

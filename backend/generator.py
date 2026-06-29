@@ -1,5 +1,5 @@
 import numpy as np
-from config import MODEL, get_embed_model
+from config import MODEL, get_embedding
 import json
 def cosine_sim(a, b):
     return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
@@ -41,9 +41,8 @@ def generate_answer(query, contexts, scores=None, sim_threshold=0.35):
             return "The provided documents do not contain this information"
 
         # 6️⃣ Post-generation validation: check similarity between context & answer
-        embed_model = get_embed_model()
-        ans_vec = embed_model.encode(answer, convert_to_numpy=True)
-        ctx_vec = embed_model.encode(context_text, convert_to_numpy=True)
+        ans_vec = get_embedding(answer)
+        ctx_vec = get_embedding(context_text)
         sim = cosine_sim(ans_vec, ctx_vec)
 
         # 7️⃣ Block if the answer doesn’t semantically match context
@@ -55,7 +54,7 @@ def generate_answer(query, contexts, scores=None, sim_threshold=0.35):
 
     except Exception as e:
         print("⚠️ Connection failed:", e)
-        return "The provided documents do not contain this information"
+        return "The provided documents do not contain this informationde"
 
 def generate_website_answer(query, context):
     """
