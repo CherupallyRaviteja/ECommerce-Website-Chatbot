@@ -7,8 +7,8 @@
 
 (function () {
   "use strict";
-
-  const API_URL = "https://ecommerce-website-chatbot.onrender.com"
+  const API_URL = window.SHOPMART_BOT_API || "http://localhost:8000";
+  //const API_URL = "https://ecommerce-website-chatbot.onrender.com"
   const SESSION_ID = "session_" + Math.random().toString(36).substr(2, 9);
 
   let isChatOpen = false;
