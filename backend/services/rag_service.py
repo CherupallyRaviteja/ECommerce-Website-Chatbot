@@ -1,7 +1,7 @@
 from importlib.resources import path
 import os
 import psycopg2
-from config import DATABASE_URL, get_embed_model
+from config import DATABASE_URL, get_embedding
 from db_init import init_database
 from document_loader import load_pdf
 
@@ -57,8 +57,7 @@ class RAGService:
             raise e
 
     def retrieve(self, query, top_k=5):
-        embed_model = get_embed_model()
-        qv = embed_model.encode([query], convert_to_numpy=True)[0]
+        qv = get_embedding(query)
         vec = ",".join(map(str, qv.tolist()))
 
         self.cur.execute("""
@@ -124,7 +123,7 @@ class RAGService:
 
 """
 def retrieve(self, query, top_k=4):
-        qv = embed_model.encode([query], convert_to_numpy=True)[0]
+        qv = get_embedding(query)
         vec = ",".join(map(str, qv.tolist()))
         self.cur.execute(""
             SELECT content, source, page, 1-(embedding <=> %s::vector)
