@@ -517,8 +517,7 @@ Conditions:
 
 <div align="center">
 
-### ⭐ If you find this project helpful, please star the repository!
+### Demonstrating AI-powered e-commerce assistance with grounded, context-only responses
   By Raviteja Cherupally | Tharuni Gunde | Harika Gundagani
-*Demonstrating AI-powered e-commerce assistance with grounded, context-only responses*
 
 </div>
