@@ -27,7 +27,7 @@ def route(q,rag):
 
         score = f"Retrieved {len(results)} results. Top score: {results[0][3] if results else 'N/A'}"
         if not results or results[0][3] < SIM_THRESHOLD:
-            return "I don't know.", {}, "No relevant sources found"
+            return {"answer": "The provided documents do not contain this information", "tool": "pdf"}
 
         contexts = []
         sources = []
@@ -40,11 +40,11 @@ def route(q,rag):
         print("Bot:", answer)
         print("\nSources:")
         sources = {source: page for source, page in set(sources)}  # Remove duplicates
-        if sources:
+        if sources and answer!="The provided documents do not contain this information":
             answer += "\n\n📄 Sources:\n"
             for source, page in sources.items():
-                answer += f"• {source} (Page {page})\n"
-        return {"answer": answer, "tool": "pdf","sources": sources,}
+                answer += f"• {source}\n"
+        return {"answer": answer, "tool": "pdf"}
     
     elif plan["tool"] == "order" or plan["tool"] == "cart":
         return {"answer": None, "tool": plan["tool"]}
