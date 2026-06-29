@@ -579,7 +579,6 @@
   async function sendMessage() {
     const text = input.value.trim();
     if (!text) return;
-
     const greetings = [
     "hi",
     "hello",
@@ -592,7 +591,7 @@
     "good evening"
 ];
 
-if (greetings.includes(message.toLowerCase())) {
+if (greetings.includes(text.toLowerCase())) {
 
     addBotMessage(
         {
@@ -611,7 +610,6 @@ if (greetings.includes(message.toLowerCase())) {
     input.value = "";
     return;
 }
-
     input.value = "";
     input.style.height = "auto";
     addUserBubble(text);
