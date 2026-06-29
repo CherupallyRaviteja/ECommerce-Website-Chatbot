@@ -580,6 +580,38 @@
     const text = input.value.trim();
     if (!text) return;
 
+    const greetings = [
+    "hi",
+    "hello",
+    "hey",
+    "hii",
+    "hiii",
+    "hey there",
+    "good morning",
+    "good afternoon",
+    "good evening"
+];
+
+if (greetings.includes(message.toLowerCase())) {
+
+    addBotMessage(
+        {
+            tool: "website",
+            products: [],
+            follow_up_questions: [
+                "Show me products",
+                "Track my order",
+                "View my cart",
+                "Upload a PDF"
+            ]
+        },
+        "Hello! 👋 Welcome to ShopMart AI. How can I help you today?"
+    );
+
+    input.value = "";
+    return;
+}
+
     input.value = "";
     input.style.height = "auto";
     addUserBubble(text);
@@ -587,7 +619,6 @@
     sendBtn.disabled = true;
 
     messageHistory.push({ role: "user", content: text });
-
     try {
       const resp = await fetch(`${API_URL}/chat`, {
         method: "POST",
