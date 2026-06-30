@@ -13,7 +13,10 @@ class KnowledgeService:
             return json.load(f)
         
     def search_products(self, filters):
-
+       
+        if not filters:
+            return []
+        
         results = []
 
         price_operator = None
