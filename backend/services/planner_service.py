@@ -136,6 +136,24 @@ class PlannerService:
                 "page": null
             }
 
+            User: Show me the cheapest laptop.
+            Output:
+            {
+            "tool": "products",
+            "filters": [
+                {
+                "field": "category",
+                "operator": "equals",
+                "value": "Laptop"
+                },
+                {
+                "field": "price",
+                "operator": "min",
+                "value": null
+                }
+            ]
+            }
+            
             User: What is your return policy?
             Output:
             {

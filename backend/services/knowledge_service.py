@@ -16,13 +16,28 @@ class KnowledgeService:
 
         results = []
 
-        for product in self.products:
+        price_operator = None
 
-            if self._matches(product, filters):
+        normal_filters = []
+
+        for f in filters:
+            if f["field"] == "price" and f["operator"] in ["min", "max"]:
+                price_operator = f["operator"]
+            else:
+                normal_filters.append(f)
+
+        for product in self.products:
+            if self._matches(product, normal_filters):
                 results.append(product)
 
-        return results
+        if price_operator == "min" and results:
+            return [min(results, key=lambda x: x["price"])]
 
+        if price_operator == "max" and results:
+            return [max(results, key=lambda x: x["price"])]
+
+        return results
+    
     def _matches(self, product, filters):
 
         for condition in filters:
@@ -35,6 +50,7 @@ class KnowledgeService:
                 return False
 
             product_value = product[field]
+            
 
             if operator == "equals":
                 if str(product_value).lower() != str(value).lower():

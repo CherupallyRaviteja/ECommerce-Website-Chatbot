@@ -429,7 +429,7 @@
         <div class="sm-bubble-wrap">
           <div class="sm-bubble">
             👋 Hi! I'm ShopMart's AI assistant.<br><br>
-            I can help you find products, compare specs, check prices, and answer questions about shipping, returns, and warranties.<br><br>
+              Feel free to ask me about products, prices, orders, store policies, or upload a PDF and I'll help you find the information you need.<br><br>
             <strong>Just type your question!</strong>
           </div>
           <span class="sm-time">Just now</span>
